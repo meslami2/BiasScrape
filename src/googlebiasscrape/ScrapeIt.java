@@ -25,7 +25,7 @@ import org.quartz.JobExecutionException;
  *
  * @author Motahhare Eslami <eslamim2@illinois.edu>
  */
-public class ScrapeIt{// implements Job{
+public class ScrapeIt {// implements Job{
 
     /**
      * @param args the command line arguments
@@ -64,7 +64,7 @@ public class ScrapeIt{// implements Job{
                             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
                     .timeout(0).get();
             String currentTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
-            String dataFile = "data/" + query + "_" + currentTime +".html";
+            String dataFile = "data/" + query + "_" + currentTime + ".html";
             IOUtils.writeDataIntoFile(doc.toString(), dataFile);
             // System.out.println(doc.toString());
             return doc;
@@ -85,12 +85,37 @@ public class ScrapeIt{// implements Job{
         IOUtils.writeDataIntoFile(results.toString(), dataFile);
         //System.out.println("SearchResults = " + results);
     }
-    
+
     public static void main(String[] args) throws InterruptedException {
         ScrapeIt sc = new ScrapeIt();
-        sc.scrape(args[0]);
+        List<String> listofQueries = new ArrayList<>();
+        listofQueries.add("democratic debate");//0
+        listofQueries.add("dem debate");//1
+        listofQueries.add("republican debate");//2
+        listofQueries.add("rep debate");//3
+
+        listofQueries.add("Bernie Sanders");//4
+        listofQueries.add("Martin O'Malley");//5
+        listofQueries.add("Hillary Clinton");//6
+
+        listofQueries.add("Jeb Bush");//7
+        listofQueries.add("Ben Carson");//8
+        listofQueries.add("Chris Christie");//9
+        listofQueries.add("Ted Cruz");//10
+        listofQueries.add("Carly Fiorina");//11
+        listofQueries.add("Jim Gilmore");//12
+        listofQueries.add("Lindsey Graham");//13
+        listofQueries.add("Mike Huckabee");//14
+        listofQueries.add("John Kasich");//15
+        listofQueries.add("George Pataki");//16
+        listofQueries.add("Rand Paul");//17
+        listofQueries.add("Marco Rubio");//18
+        listofQueries.add("Rick Santorum");//19
+        listofQueries.add("Donald Trump");//20
+
+        sc.scrape(listofQueries.get(Integer.parseInt(args[0])));
     }
-    
+
     /*public void execute(JobExecutionContext context)
             throws JobExecutionException {
 
@@ -99,7 +124,7 @@ public class ScrapeIt{// implements Job{
 
     }*/
 
-    /*public static void main(String[] args) throws InterruptedException {
+ /*public static void main(String[] args) throws InterruptedException {
          List<String> listofQueries = new ArrayList<>();
         
         listofQueries.add("democratic debate");
