@@ -14,7 +14,7 @@
  * under the License.
  * 
  */
-package googlebiasscrape;
+package biasscrape;
 
 import java.util.ArrayList;
 import java.util.List;
