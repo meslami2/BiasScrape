@@ -64,7 +64,8 @@ public class ScrapeIt {// implements Job{
                             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
                     .timeout(0).get();
             String currentTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
-            String dataFile = "data/" + query + "_" + currentTime + ".html";
+            String filePath = "/NS/twitter-7/work/meslamim/projects/BiasScrape/data/";
+            String dataFile = filePath + query + "_" + currentTime + ".html";
             IOUtils.writeDataIntoFile(doc.toString(), dataFile);
             // System.out.println(doc.toString());
             return doc;
@@ -81,7 +82,8 @@ public class ScrapeIt {// implements Job{
         Document doc = getPageDoc(query);
         List<SearchResult> results = extractSearchResults(doc);
         String currentTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
-        String dataFile = "data/" + query + "_info_" + currentTime;
+        String filePath = "/NS/twitter-7/work/meslamim/projects/BiasScrape/data/";
+        String dataFile = filePath + query + "_info_" + currentTime;
         IOUtils.writeDataIntoFile(results.toString(), dataFile);
         //System.out.println("SearchResults = " + results);
     }
