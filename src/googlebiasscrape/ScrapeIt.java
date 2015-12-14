@@ -21,10 +21,9 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-
 /**
  *
- * @author Amirhossein Aleyasen <aleyase2@illinois.edu>
+ * @author Motahhare Eslami <eslamim2@illinois.edu>
  */
 public class ScrapeIt{// implements Job{
 
@@ -63,9 +62,9 @@ public class ScrapeIt{// implements Job{
                     .connect(url)
                     .userAgent(
                             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
-                    .timeout(5000).get();
+                    .timeout(0).get();
             String currentTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
-            String dataFile = "data/" + query + "_" + currentTime;
+            String dataFile = "data/" + query + "_" + currentTime +".html";
             IOUtils.writeDataIntoFile(doc.toString(), dataFile);
             // System.out.println(doc.toString());
             return doc;
@@ -77,52 +76,30 @@ public class ScrapeIt{// implements Job{
         return null;
     }
 
-    public void scrape(String query, int numberOfPages) {
+    public void scrape(String query) {
+        //numberofpages is not currently used but if we decided to extend the results to two or more pages, will be used!
         Document doc = getPageDoc(query);
         List<SearchResult> results = extractSearchResults(doc);
         String currentTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
-        String dataFile = "data/" + query + "_info_"  + currentTime;
+        String dataFile = "data/" + query + "_info_" + currentTime;
         IOUtils.writeDataIntoFile(results.toString(), dataFile);
         //System.out.println("SearchResults = " + results);
     }
-
+    
+    public static void main(String[] args) throws InterruptedException {
+        ScrapeIt sc = new ScrapeIt();
+        sc.scrape(args[0]);
+    }
+    
     /*public void execute(JobExecutionContext context)
-        throws JobExecutionException {
-        
-        List<String> listofQueries = new ArrayList<>();
-        
-        listofQueries.add("democratic debate");
-        listofQueries.add("dem debate");
-        listofQueries.add("republican debate");
-        listofQueries.add("rep debate");
-        listofQueries.add("democratic debate");
-        
-        listofQueries.add("Bernie Sanders");
-        listofQueries.add("Martin O'Malley");
-        listofQueries.add("Hillary Clinton");
-          
-        listofQueries.add("Jeb Bush");
-        listofQueries.add("Ben Carson");
-        listofQueries.add("Chris Christie");
-        listofQueries.add("Ted Cruz");
-        listofQueries.add("Carly Fiorina");
-        listofQueries.add("Jim Gilmore");
-        listofQueries.add("Lindsey Graham");
-        listofQueries.add("Mike Huckabee");
-        listofQueries.add("John Kasich");
-        listofQueries.add("George Pataki");
-        listofQueries.add("Rand Paul");
-        listofQueries.add("Marco Rubio");
-        listofQueries.add("Rick Santorum");
-        listofQueries.add("Donald Trump");
-        
-        for (int i = 0; i < listofQueries.size(); i++) {
-            scrape(listofQueries.get(i), 2);
-        }
+            throws JobExecutionException {
+
+        String query = "democratic debate";
+        scrape(query, 1);
 
     }*/
-    
-     public static void main(String[] args) throws InterruptedException {
+
+    /*public static void main(String[] args) throws InterruptedException {
          List<String> listofQueries = new ArrayList<>();
         
         listofQueries.add("democratic debate");
@@ -153,10 +130,8 @@ public class ScrapeIt{// implements Job{
         ScrapeIt sc = new ScrapeIt();
         for (int i = 0; i < listofQueries.size(); i++) {
             sc.scrape(listofQueries.get(i), 2);
-            System.out.println("salam");
-            Thread.sleep(5000);
+           // System.out.println("salam");
+            Thread.sleep(300000);
         }
-    }
-
+    }*/
 }
-   

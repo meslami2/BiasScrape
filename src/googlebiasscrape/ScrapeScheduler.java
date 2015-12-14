@@ -36,11 +36,10 @@ import org.quartz.JobExecutionException;
  * This Example will demonstrate how to start and shutdown the Quartz scheduler
  * and how to schedule a job to run in Quartz.
  *
- * @author Bill Kratzer
  */
-public class ScrapeScheduler {
+/*public class ScrapeScheduler {
 
-   /* public void run() throws Exception {
+   public void run() throws Exception {
         // First we must get a reference to a scheduler
         SchedulerFactory sf = new StdSchedulerFactory();
         Scheduler sched = sf.getScheduler();
@@ -71,6 +70,6 @@ public class ScrapeScheduler {
         BasicConfigurator.configure();
         querySched.run();
     }
-*/
 
 }
+*/

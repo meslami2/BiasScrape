@@ -7,8 +7,7 @@ package googlebiasscrape;
 
 /**
  *
- * @author Amirhossein Aleyasen <aleyase2@illinois.edu>
- * created on Dec 10, 2015, 3:08:27 PM
+ * @author Motahhare Eslami <eslamim2@illinois.edu>
  */
 public class SearchResult {
 
